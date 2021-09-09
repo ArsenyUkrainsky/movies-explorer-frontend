@@ -13,23 +13,12 @@ function App() {
           <Main />
         </Route>
         <Route exact path="/movies">
-<<<<<<< HEAD
-          <Movies movies={movies}/>
-=======
           <Movies />
->>>>>>> origin/level-2
         </Route>
       </Switch>
       <Footer />
     </div>
-<<<<<<< HEAD
-  )
-}
-
-export default App
-=======
   );
 }
 
 export default App;
->>>>>>> origin/level-2
