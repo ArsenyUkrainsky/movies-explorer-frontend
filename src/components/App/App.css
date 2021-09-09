@@ -1,5 +1,6 @@
 * {
   outline: 1px tomato solid;
+  background-color: bisque;
 }
 
 .app {
@@ -14,6 +15,4 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-
-
 }

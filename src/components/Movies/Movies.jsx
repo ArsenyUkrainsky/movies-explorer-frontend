@@ -1,23 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import SearchForm from '../SearchForm/SearchForm'
 import './Movies.css'
+import fetchData from '../../utils/fetchMoviesJSON'
+
+const Movies = () => {
+     const [movies, setMovies] = useState([])
+     useEffect(() => {
+          fetchData()
+          .then(m => setMovies(m))
+     },[])
 
 
-
-
-function Movies  ({movies})  {
-     console.log(movies);
-
-return (
+     return (
           <section className="movies">
                <SearchForm />
-               <MoviesCardList movies={movies}/>
+               <MoviesCardList movies={movies} />
           </section>
      )
 
 
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> origin/level-2
 
 }
 export default Movies
