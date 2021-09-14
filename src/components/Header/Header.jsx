@@ -1,94 +1,64 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import HomeButton from '../HomeButton/HomeButton'
 import './Header.css'
 
 const Header = () => {
-  //TODO: test user to see header
+  //TODO: test user to  header
   const [authorizeUser, setUser] = useState(true)
 
   const [burger, setBurger] = useState(false)
-  const [mainPage, styleOn] = useState(true)
   const handleBurger = (e) => {
     e.preventDefault()
     setBurger(!burger)
   }
 
   const location = useLocation()
-  useEffect(() => {
-    switch (location.pathname) {
-      case '/':
-        styleOn(true)
-        break
-      case '/signup':
-        styleOn(false)
-        break
-      case '/signin':
-        styleOn(false)
-        break
-      case '/movies':
-        styleOn(false)
-
-        break
-      case '/saved-movies':
-        styleOn(false)
-
-        break
-      case '/profile':
-        styleOn(false)
-
-        break
-      default:
-        styleOn(false)
-
-        break
-    }
-  }, [location])
+  const mainLocation = location.pathname === '/'
 
   return (
-    <header
-      className="header"
-      style={mainPage ? { backgroundColor: '#073042' } : { backgroundColor: '#fff' }}>
+    <header className={mainLocation ? 'header header_main header_mobile' : 'header header_mobile'}>
       <HomeButton />
       <ul className="header__items">
         {!authorizeUser ? (
           <>
             <li className="header__item">
-              <Link className="header__link" to="/signup">
+              <NavLink className="header__link" to="/signup">
                 Регистрация
-              </Link>
+              </NavLink>
             </li>
             <li className="header__item">
-              <Link className="header__link" to="/signin">
+              <NavLink className="header__link" to="/signin">
                 Войти
-              </Link>
+              </NavLink>
             </li>
           </>
         ) : (
           <>
             <li className="header__item">
-              <Link
-                className="header__link"
-                to="/movies"
-                style={location.pathname === '/movies' ? { fontWeight: '500' } : { fontWeight: '400' }}>
+              <NavLink
+                className={mainLocation ? 'header__link header__link_white' : 'header__link'}
+                activeClassName="header__link_active"
+                to="/movies">
                 Фильмы
-              </Link>
+              </NavLink>
             </li>
             <li className="header__item">
-              <Link
-                className="header__link"
-                to="/saved-movies"
-                style={location.pathname === '/saved-movies' ? { fontWeight: '500' } : { fontWeight: '400' }}>
+              <NavLink
+                className={mainLocation ? 'header__link header__link_white' : 'header__link'}
+                activeClassName="header__link_active"
+                to="/saved-movies">
                 Сохранённые фильмы
-              </Link>
+              </NavLink>
             </li>
             <li className="header__item">
-              <Link
-                className="header__link"
-                to="/profile"
-                style={location.pathname === '/profile' ? { fontWeight: '500' } : { fontWeight: '400' }}>
+              <NavLink
+                className={mainLocation ? 'header__link header__link_white' : 'header__link'}
+                activeClassName="header__link_active"
+                to="/profile">
                 Аккаунт
-              </Link>
+              </NavLink>
+              <span className="header__icon"></span>
             </li>
           </>
         )}

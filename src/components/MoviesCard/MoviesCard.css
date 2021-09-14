@@ -40,12 +40,16 @@
   height: 24px;
   cursor: pointer;
 }
+.movies-card__like:hover {
+  transition: 0.4s;
+  background-image: url('../../images/like-active.svg');
+}
 .movies-card__like_active {
-  transition: 0.2s;
+  transition: 0.4s;
   background-image: url('../../images/like-active.svg');
 }
 .movies-card__like_del:hover {
-  transition: 0.2s;
+  transition: 0.4s;
   background-image: url('../../images/like-delete.svg');
 }
 
