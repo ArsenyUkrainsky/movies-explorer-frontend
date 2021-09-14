@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  margin: 0 auto;
+  padding: 18px 70px;
+  max-width: 1140px;
+  align-self: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.header__items {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.header__item {
+  list-style: none;
+}
+.header__item:first-of-type {
+  margin-right: 30px;
+}
+.header__link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__link:hover {
+  opacity: 0.7;
+  transition: 0.7;
+}

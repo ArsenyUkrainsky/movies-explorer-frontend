@@ -1,14 +1,14 @@
 import React from 'react'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import SearchForm from '../SearchForm/SearchForm'
-import './Movies.css'
+import './SavedMovies.css'
 
-const Movies = ({ movies, onCardLike }) => {
+const SavedMovies = ({ savedMovies }) => {
   return (
-    <section className="movies">
+    <section className="saved-movies">
       <SearchForm />
-      <MoviesCardList movies={movies} onCardLike={onCardLike} />
+      <MoviesCardList movies={savedMovies} />
     </section>
   )
 }
-export default Movies
+export default SavedMovies

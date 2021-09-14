@@ -1,18 +1,18 @@
-.movies {
+.saved-movies {
   display: flex;
   flex-direction: column;
-  margin: 50px 70px;
+  margin: 80px 70px;
   max-width: 1140px;
   justify-content: center;
   align-items: center;
 }
 @media screen and (max-width: 1024px) {
-  .movies {
+  .saved-movies {
     margin: 80px 30px;
   }
 }
 @media screen and (max-width: 426px) {
-  .movies {
+  .saved-movies {
     margin: 60px 10px;
   }
 }

@@ -3,6 +3,7 @@
   justify-content: center;
   width: 100%;
   padding-bottom: 83px;
+  margin-bottom: 80px;
   border-bottom: 1px solid rgba(170, 170, 170, 0.2);
 }
 .search-form__form {
@@ -40,6 +41,7 @@
 @media screen and (max-width: 1024px) {
   .search-form {
     flex-direction: column;
+    padding-bottom: 57px;
   }
   .search-form__form {
     margin-right: 0;
@@ -47,8 +49,8 @@
   }
 }
 @media screen and (max-width: 426px) {
-  .search-form__form {
-    margin-bottom: 45px;
+  .search-form {
+    margin-bottom: 50px;
     padding-bottom: 44px;
   }
   .search-form__field {
