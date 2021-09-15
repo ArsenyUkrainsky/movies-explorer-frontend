@@ -1,9 +1,9 @@
 import './AboutProject.css'
 import React from 'react'
 import SectionTitle from '../SectionTitle/SectionTitle'
-const AboutProject = () => {
+const AboutProject = ({ aboutProjectRef }) => {
   return (
-    <section className="about-project">
+    <section className="about-project" ref={aboutProjectRef}>
       <SectionTitle title="О проекте" />
       <ul className="about-project__container">
         <li className="about-project__element">
@@ -16,8 +16,8 @@ const AboutProject = () => {
         <li className="about-project__element">
           <h3 className="about-project__subtitle">На выполнение диплома ушло 5 недель</h3>
           <p className="about-project__content">
-            У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы
-            успешно защититься.
+            У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно
+            защититься.
           </p>
         </li>
       </ul>

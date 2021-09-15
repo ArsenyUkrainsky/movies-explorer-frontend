@@ -1,7 +1,7 @@
-* {
+/* * {
   outline: 1px bisque solid;
 }
-
+ */
 .app {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;

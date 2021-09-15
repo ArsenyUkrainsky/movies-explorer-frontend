@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
+import { Route, Switch /* Redirect, useHistory */ } from 'react-router-dom'
 import './App.css'
 import Main from '../Main/Main'
 import Footer from '../Footer/Footer'
@@ -10,9 +10,10 @@ import Login from '../Login/Login'
 import { fetchData, fetchDataLiked } from '../../utils/fetchMoviesJSON'
 import Profile from '../Profile/Profile'
 import Header from '../Header/Header'
+import NotFound from '../NotFound/NotFound'
 
 const App = () => {
-  const [user, setUser] = useState({ person: 'Виталий', email: 'pochta@yandex.ru' })
+  const [user /* setUser */] = useState({ person: 'Виталий', email: 'pochta@yandex.ru' })
   const [movies, setMovies] = useState([])
   const [sMovies, setSavedMovies] = useState([])
   useEffect(() => {
@@ -52,6 +53,9 @@ const App = () => {
         <Route exact path="/profile">
           <Header />
           <Profile user={user} />
+        </Route>
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
     </div>
