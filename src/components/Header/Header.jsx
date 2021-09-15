@@ -23,13 +23,13 @@ const Header = () => {
         {!authorizeUser ? (
           <>
             <li className="header__item">
-              <NavLink className="header__link" to="/signup">
+              <NavLink className="header__link-main" to="/signup">
                 Регистрация
               </NavLink>
             </li>
             <li className="header__item">
-              <NavLink className="header__link" to="/signin">
-                Войти
+              <NavLink to="/signin">
+                <button className="header__link-main-button">Войти</button>
               </NavLink>
             </li>
           </>
@@ -57,13 +57,17 @@ const Header = () => {
                 activeClassName="header__link_active"
                 to="/profile">
                 Аккаунт
+                <button className="header__icon"></button>
               </NavLink>
-              <span className="header__icon"></span>
             </li>
           </>
         )}
       </ul>
-      {false && <button onClick={handleBurger} className="header__burger-button"></button>}
+      <button
+        onClick={handleBurger}
+        className={`header__btn-burger ${burger && 'header__btn-burger_active'}`}>
+        <span></span>
+      </button>
     </header>
   )
 }

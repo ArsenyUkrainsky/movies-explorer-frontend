@@ -27,6 +27,10 @@
   display: flex;
   justify-content: space-between;
 }
+.portfolio__link:hover {
+  opacity: 0.8;
+  transition: 0.4;
+}
 .portfolio__icon {
   margin: 0;
   font-size: 30px;
