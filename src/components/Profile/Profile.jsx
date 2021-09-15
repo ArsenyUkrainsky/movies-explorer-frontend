@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Profile.css'
 
-const Profile = ({ user, onSubmit, onChange /* onLogOut */ }) => {
+const Profile = ({ user, onSubmit /* onChange */ /* onLogOut */ }) => {
   /*   function handleChange(e) {
     const { name, value } = e.target
     setUser({ ...user, [name]: value })
@@ -17,12 +17,13 @@ const Profile = ({ user, onSubmit, onChange /* onLogOut */ }) => {
     console.log('выйти из профиля')
     /* onLogOut() */
   }
+  const onChange = (e) => e.preventDefault()
   return (
     <div className="profile">
       <h2 className="profile__title">{`Привет, ${user.person}!`}</h2>
       <form className="profile__form" onSubmit={onSubmit}>
         <fieldset className="profile__input-area">
-          <label for="user-name" className="profile__field-label">
+          <label htmlFor="user-name" className="profile__field-label">
             Имя
           </label>
           <input
@@ -38,7 +39,7 @@ const Profile = ({ user, onSubmit, onChange /* onLogOut */ }) => {
             value={user.person}></input>
         </fieldset>
         <fieldset className="profile__input-area">
-          <label for="user-email" className="profile__field-label">
+          <label htmlFor="user-email" className="profile__field-label">
             E-mail
           </label>
           <input
