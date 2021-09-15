@@ -1,0 +1,121 @@
+.about-project {
+  padding: 75px 70px;
+}
+.about-project__container {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.about-project__element {
+  display: flex;
+  flex-direction: column;
+}
+.about-project__subtitle {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  margin: 0 0 26px 0;
+}
+.about-project__content {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 0 110px 0;
+}
+.about-project__progress-bar {
+  display: flex;
+  max-width: 1140px;
+}
+.about-project__progress-bar-area {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 228px;
+}
+.about-project__progress-bar-area_front {
+  width: calc(100% - 228px);
+}
+.about-project__progress-bar-section {
+  background-color: #2be080;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+}
+.about-project__progress-bar-section_front {
+  background-color: #f2f2f2;
+}
+
+.about-project__progress-bar-caption {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: var(--primary-color, #a0a0a0);
+  font-weight: 500;
+  margin-top: 14px;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+  .about-project__subtitle {
+    margin: 0 0 22px 0;
+  }
+  .about-project__element:first-of-type {
+    margin-right: 30px;
+  }
+  .about-project__content {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 93px 0;
+  }
+  .about-project__progress-bar-area {
+    width: 140px;
+  }
+  .about-project__progress-bar-area_front {
+    width: calc(100% - 140px);
+  }
+}
+@media screen and (max-width: 426px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+  .about-project__container {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .about-project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 16px 0;
+  }
+  .about-project__content {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 56px 0;
+  }
+  .about-project__progress-bar {
+
+
+    margin-top: 60px;
+  }
+  .about-project__progress-bar-area {
+    width: 100px;
+  }
+  .about-project__progress-bar-area_front {
+    width: calc(100% - 100px);
+  }
+  .about-project__progress-bar-section {
+    font-size: 11px;
+    line-height: 13px;
+    height: 35px;
+  }
+  .about-project__element:first-of-type {
+    margin-right: 0px;
+  }
+}

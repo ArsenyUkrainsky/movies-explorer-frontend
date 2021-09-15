@@ -1,0 +1,7 @@
+.home-button {
+  border: none;
+  cursor: pointer;
+  background-image: url(../../images/logo-home.svg);
+  height: 38px;
+  width: 38px;
+}
