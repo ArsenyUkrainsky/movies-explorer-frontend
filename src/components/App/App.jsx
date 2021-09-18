@@ -13,7 +13,7 @@ import Header from '../Header/Header'
 import NotFound from '../NotFound/NotFound'
 
 const App = () => {
-  const [user /* setUser */] = useState({ person: 'Виталий', email: 'pochta@yandex.ru' })
+  const [currentUser, setCurrentUser] = useState({ person: '', email: '' })
   const [movies, setMovies] = useState([])
   const [sMovies, setSavedMovies] = useState([])
   useEffect(() => {
@@ -52,7 +52,7 @@ const App = () => {
 
         <Route exact path="/profile">
           <Header />
-          <Profile user={user} />
+          <Profile currentUser={currentUser} />
         </Route>
         <Route path="*">
           <NotFound />

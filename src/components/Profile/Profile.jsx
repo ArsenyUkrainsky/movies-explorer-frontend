@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Profile.css'
 
-const Profile = ({ user, onSubmit /* onChange */ /* onLogOut */ }) => {
+const Profile = ({ currentUser, onSubmit /* onChange */ /* onLogOut */ }) => {
   /*   function handleChange(e) {
     const { name, value } = e.target
     setUser({ ...user, [name]: value })
@@ -20,7 +20,7 @@ const Profile = ({ user, onSubmit /* onChange */ /* onLogOut */ }) => {
   const onChange = (e) => e.preventDefault()
   return (
     <div className="profile">
-      <h2 className="profile__title">{`Привет, ${user.person}!`}</h2>
+      <h2 className="profile__title">{`Привет, ${currentUser.person}!`}</h2>
       <form className="profile__form" onSubmit={onSubmit}>
         <fieldset className="profile__input-area">
           <label htmlFor="user-name" className="profile__field-label">
@@ -36,7 +36,7 @@ const Profile = ({ user, onSubmit /* onChange */ /* onLogOut */ }) => {
             maxLength="60"
             className="profile__field"
             onChange={onChange}
-            value={user.person}></input>
+            value={currentUser.person}></input>
         </fieldset>
         <fieldset className="profile__input-area">
           <label htmlFor="user-email" className="profile__field-label">
@@ -53,7 +53,7 @@ const Profile = ({ user, onSubmit /* onChange */ /* onLogOut */ }) => {
             maxLength="30"
             className="profile__field"
             onChange={onChange}
-            value={user.email}></input>
+            value={currentUser.email}></input>
         </fieldset>
         {!showButton && (
           <button className="profile__edit" type="button" onClick={editProfile}>
