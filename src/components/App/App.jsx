@@ -37,7 +37,7 @@ const App = () => {
     movieLiked
       ? mApi
           .deleteMovie(_id, JWT)
-          .then((resMovie) => {
+          .then(() => {
             setSavedMovies((state) => state.filter((movie) => movie._id !== _id))
           })
           .catch((err) => {
@@ -59,10 +59,13 @@ const App = () => {
       mApi
         .getMovies(JWT)
         .then(({ movies }) => {
+          return movies.filter((obj) => obj.owner == currentUser._id)
+        })
+        .then((movies) => {
           setSavedMovies(movies)
           return movies
         })
-        .then((movies) => {
+        .then(() => {
           const moviesFromLocalSt = JSON.parse(localStorage.getItem('MOV'))
           if (moviesFromLocalSt !== null) {
             /*  let movie = moviesFromLocalSt.map((el) => ({
@@ -75,7 +78,7 @@ const App = () => {
         .catch((err) => {
           console.log(`Ошибка при получении данных сохраненных фильмов: ${err}`)
         })
-  }, [location.pathname])
+  }, [location.pathname, authorizeUser])
 
   useEffect(() => {
     setErr('')
@@ -105,11 +108,13 @@ const App = () => {
       .register({ name, email, password })
       .then((data) => {
         const JWT = data._id //вытащить _id
+        // eslint-disable-next-line no-unused-expressions
         JWT && localStorage.setItem('jwt', JWT)
         mApi
           .login({ password, email })
           .then((res) => {
             const JWT = res.token
+            // eslint-disable-next-line no-unused-expressions
             JWT && localStorage.setItem('jwt', JWT)
             setUserAuthorize(true)
             history.push('/movies')
@@ -130,6 +135,7 @@ const App = () => {
       .login({ password, email })
       .then((res) => {
         const JWT = res.token
+        // eslint-disable-next-line no-unused-expressions
         JWT && localStorage.setItem('jwt', JWT)
         setUserAuthorize(true)
         history.push('/movies')

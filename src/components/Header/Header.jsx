@@ -10,6 +10,7 @@ const Header = ({ authorizeUser }) => {
     setBurger(!burger)
   }
   useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
     burger ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'unset')
   }, [burger])
 

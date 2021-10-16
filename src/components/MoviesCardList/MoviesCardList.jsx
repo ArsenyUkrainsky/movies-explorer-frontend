@@ -31,6 +31,7 @@ const MoviesCardList = ({ movies, onCardLike, fromBeatfilmApi, savedMovies }) =>
   }
   // Отображать кнопку еще до тех пор пока есть что показать
   useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
     movies.length > loadMovies.length ? setButtonState(true) : setButtonState(false)
   }, [loadMovies.length])
 

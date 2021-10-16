@@ -12,6 +12,7 @@ const MoviesCard = ({ onCardLike, ...props }) => {
     onCardLike(props)
   }
   useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
     savedMovies && setLike(savedMovies.some((m) => m.movieId == movieId))
   }, [])
 

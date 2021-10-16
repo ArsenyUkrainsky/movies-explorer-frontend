@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AuthForm from '../AuthForm/AuthForm'
 import { Link } from 'react-router-dom'
 

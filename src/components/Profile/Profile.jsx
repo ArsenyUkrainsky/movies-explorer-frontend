@@ -5,8 +5,7 @@ import { useFormWithValidation } from '../hooks/formValid'
 
 const Profile = ({ onSubmit, logoutProfile, err }) => {
   const currentUser = useContext(CurrentUserContext)
-  console.log('currentUser', currentUser)
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation(currentUser)
+  const { values, handleChange, errors, isValid } = useFormWithValidation(currentUser)
 
   const [isDisabledInput, setInputState] = useState(true)
 
