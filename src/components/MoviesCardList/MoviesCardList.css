@@ -27,6 +27,12 @@
   transition: 0.8s;
   opacity: 0.8;
 }
+.movies-card-list__err {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  margin: 60px auto;
+}
 @media screen and (max-width: 1024px) {
   .movies-card-list {
     align-self: center;

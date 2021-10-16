@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './MoviesCard.css'
 
-const MoviesCard = ({ id, trailerLink, image, alt, title, duration, onCardLike }) => {
+const MoviesCard = ({ onCardLike, ...props }) => {
   const [isLiked, setLike] = useState(false)
+  const { trailer, image, nameRU, duration, savedMovies, movieId } = props
   const [time, setTime] = useState('')
+
   function handleLikeClick() {
     setLike(!isLiked)
     /* onCardLike({ likes, cardId }) */
-    /* onCardLike(id) */
+    onCardLike(props)
   }
+  useEffect(() => {
+    savedMovies && setLike(savedMovies.some((m) => m.movieId == movieId))
+  }, [])
+
   useEffect(() => {
     const getTimeFromMins = (duration) => {
       let hours = Math.trunc(duration / 60)
@@ -19,19 +25,23 @@ const MoviesCard = ({ id, trailerLink, image, alt, title, duration, onCardLike }
   }, [duration])
 
   return (
-    <li className="movies-card">
-      <a className="movies-card__link" href={trailerLink} target="_blank" rel="noreferrer">
-        <img className="movies-card__image" src={`https://api.nomoreparties.co${image}`} alt={alt} />
+    <li className='movies-card'>
+      <a className='movies-card__link' href={trailer} target='_blank' rel='noreferrer'>
+        <img className='movies-card__image' src={image} alt={nameRU} />
       </a>
-      <div className="movies-card__info">
-        <h2 className="movies-card__title">{title}</h2>
+      <div className='movies-card__info'>
+        <h2 className='movies-card__title'>{nameRU}</h2>
         <button
           className={
-            isLiked ? 'movies-card__like movies-card__like_active movies-card__like_del' : 'movies-card__like'
+            props._id
+              ? 'movies-card__like movies-card__like_del'
+              : isLiked
+              ? 'movies-card__like movies-card__like_active movies-card__like_del'
+              : 'movies-card__like'
           }
           onClick={handleLikeClick}></button>
       </div>
-      <p className="movies-card__time">{time}</p>
+      <p className='movies-card__time'>{time}</p>
     </li>
   )
 }

@@ -1,5 +1,6 @@
 .footer {
   padding: 110px 70px 20px;
+  margin-top: auto;
 }
 .footer__text {
   color: var(--primary-color, #a0a0a0);

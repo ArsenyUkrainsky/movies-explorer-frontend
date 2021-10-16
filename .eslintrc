@@ -5,7 +5,8 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,8 +19,9 @@
         "react"
     ],
     "rules": {
-        
+        "no-undef": "warn",
         "no-unused-vars": "warn",
-        "no-unused-expressions": "warn"
+        "no-unused-expressions": "warn",
+        "react/prop-types": "warn"
     }
 }

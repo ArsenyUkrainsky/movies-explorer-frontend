@@ -1,79 +1,86 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './Profile.css'
+import CurrentUserContext from '../../contexts/CurrentUserContext'
+import { useFormWithValidation } from '../hooks/formValid'
 
-const Profile = ({ currentUser, onSubmit /* onChange */ /* onLogOut */ }) => {
-  /*   function handleChange(e) {
-    const { name, value } = e.target
-    setUser({ ...user, [name]: value })
-  } */
-  //TODO: test element
-  let activeError = true
-  const [showButton, setBtnState] = useState(false)
+const Profile = ({ onSubmit, logoutProfile, err }) => {
+  const currentUser = useContext(CurrentUserContext)
+  console.log('currentUser', currentUser)
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation(currentUser)
+
+  const [isDisabledInput, setInputState] = useState(true)
+
   const editProfile = () => {
-    setBtnState(!showButton)
+    setInputState(false)
   }
-  const logoutProfile = (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('выйти из профиля')
-    /* onLogOut() */
+    onSubmit(values)
   }
-  const onChange = (e) => e.preventDefault()
+
   return (
-    <div className="profile">
-      <h2 className="profile__title">{`Привет, ${currentUser.person}!`}</h2>
-      <form className="profile__form" onSubmit={onSubmit}>
-        <fieldset className="profile__input-area">
-          <label htmlFor="user-name" className="profile__field-label">
+    <div className='profile'>
+      <h2 className='profile__title'>{`Привет, ${currentUser.name}!`}</h2>
+      <form className='profile__form' onSubmit={handleSubmit}>
+        <fieldset className='profile__input-area'>
+          <label htmlFor='user-name' className='profile__field-label'>
             Имя
           </label>
           <input
-            type="text"
-            id="user-name"
-            name="user"
+            disabled={isDisabledInput}
+            type='text'
+            id='user-name'
+            name='name'
             required
-            autoComplete="off"
-            minLength="2"
-            maxLength="60"
-            className="profile__field"
-            onChange={onChange}
-            value={currentUser.person}></input>
+            autoComplete='off'
+            minLength='2'
+            maxLength='60'
+            className='profile__field'
+            onChange={handleChange}
+            value={values.name || ''}></input>
         </fieldset>
-        <fieldset className="profile__input-area">
-          <label htmlFor="user-email" className="profile__field-label">
+        {!values.name || errors.name ? <span className='profile__error'>{errors.name}</span> : <></>}
+        <fieldset className='profile__input-area'>
+          <label htmlFor='user-email' className='profile__field-label'>
             E-mail
           </label>
           <input
-            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-            type="email"
-            id="user-email"
-            name="email"
+            disabled={isDisabledInput}
+            pattern='^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+            type='email'
+            id='user-email'
+            name='email'
             required
-            autoComplete="off"
-            minLength="3"
-            maxLength="30"
-            className="profile__field"
-            onChange={onChange}
-            value={currentUser.email}></input>
+            autoComplete='off'
+            minLength='3'
+            maxLength='30'
+            className='profile__field'
+            onChange={handleChange}
+            value={values.email || ''}></input>
         </fieldset>
-        {!showButton && (
-          <button className="profile__edit" type="button" onClick={editProfile}>
+        {!values.email || errors.email ? <span className='profile__error'>{errors.email}</span> : <></>}
+        {isDisabledInput && (
+          <button className='profile__edit' type='button' onClick={editProfile}>
             Редактировать
           </button>
         )}
-        {!showButton && (
-          <button className="profile__logout" type="button" onClick={logoutProfile}>
+        {isDisabledInput && (
+          <button className='profile__logout' type='button' onClick={logoutProfile}>
             Выйти из аккаунта
           </button>
         )}
 
-        {showButton && activeError && (
-          <span className="profile__submit-error"> При обновлении профиля произошла ошибка.</span>
+        {err ? (
+          <span className='profile__error-from-server'>{`При обновлении профиля произошла ${err}`}</span>
+        ) : (
+          <></>
         )}
-
-        {showButton && (
+        {!isDisabledInput && (
           <button
-            className={!activeError ? 'profile__submit' : 'profile__submit profile__submit_disable'}
-            type="submit">
+            disabled={!isValid}
+            className={isValid ? 'profile__submit' : 'profile__submit profile__submit_disable'}
+            type='submit'>
             Сохранить
           </button>
         )}

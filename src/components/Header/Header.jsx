@@ -3,10 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import HomeButton from '../HomeButton/HomeButton'
 import './Header.css'
 
-const Header = () => {
-  //TODO: test user to  header
-  const [authorizeUser /* setUser */] = useState(true)
-
+const Header = ({ authorizeUser }) => {
   const [burger, setBurger] = useState(false)
   const handleBurger = (e) => {
     e.preventDefault()
@@ -18,61 +15,64 @@ const Header = () => {
 
   const location = useLocation()
   const mainLocation = location.pathname === '/'
+  const authLocation = location.pathname === '/signup' || location.pathname === '/signin'
 
-  return (
+  return authLocation ? (
+    <></>
+  ) : (
     <header className={mainLocation ? 'header header_main header_mobile' : 'header header_mobile'}>
-      {burger && <div className="header__cover"></div>}
+      {burger && <div className='header__cover'></div>}
       <HomeButton />
       <ul className={burger ? 'header__items header__items_active-burger' : 'header__items'}>
         {!authorizeUser ? (
           <>
-            <li className="header__item">
-              <NavLink className="header__link-main" to="/signup">
+            <li className='header__item'>
+              <NavLink className='header__link-main' to='/signup'>
                 Регистрация
               </NavLink>
             </li>
-            <li className="header__item">
-              <NavLink to="/signin">
-                <button className="header__link-main-button">Войти</button>
+            <li className='header__item'>
+              <NavLink to='/signin'>
+                <button className='header__link-main-button'>Войти</button>
               </NavLink>
             </li>
           </>
         ) : (
           <>
             {burger && (
-              <li className="header__item">
+              <li className='header__item'>
                 <NavLink
                   className={mainLocation ? 'header__link header__link_white' : 'header__link'}
-                  activeClassName="header__link_active"
+                  activeClassName='header__link_active'
                   exact
-                  to="/">
+                  to='/'>
                   Главная
                 </NavLink>
               </li>
             )}
-            <li className="header__item">
+            <li className='header__item'>
               <NavLink
                 className={mainLocation ? 'header__link header__link_white' : 'header__link'}
-                activeClassName="header__link_active"
-                to="/movies">
+                activeClassName='header__link_active'
+                to='/movies'>
                 Фильмы
               </NavLink>
             </li>
-            <li className="header__item">
+            <li className='header__item'>
               <NavLink
                 className={mainLocation ? 'header__link header__link_white' : 'header__link'}
-                activeClassName="header__link_active"
-                to="/saved-movies">
+                activeClassName='header__link_active'
+                to='/saved-movies'>
                 Сохранённые фильмы
               </NavLink>
             </li>
-            <li className="header__item">
+            <li className='header__item'>
               <NavLink
                 className={mainLocation ? 'header__link header__link_white' : 'header__link'}
-                activeClassName="header__link_active"
-                to="/profile">
+                activeClassName='header__link_active'
+                to='/profile'>
                 Аккаунт
-                <button className="header__icon"></button>
+                <button className='header__icon'></button>
               </NavLink>
             </li>
           </>

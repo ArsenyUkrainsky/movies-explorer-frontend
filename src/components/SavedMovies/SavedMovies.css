@@ -1,7 +1,7 @@
 .saved-movies {
   display: flex;
   flex-direction: column;
-  margin: 80px 70px;
+  margin: 50px 70px;
   max-width: 1140px;
   justify-content: center;
   align-items: center;
