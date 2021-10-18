@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import './SearchForm.css'
 
-const SearchForm = ({ formSubmit }) => {
+const SearchForm = ({ formSubmit, switchToShort }) => {
   const [text, setInputText] = useState('')
   const [textError, setError] = useState('')
-  const [isShort, setShort] = useState(false)
+
   useEffect(() => {
     setError('Введите ключевое слово для поиска')
   }, [])
@@ -18,11 +18,9 @@ const SearchForm = ({ formSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    formSubmit(text, isShort)
+    formSubmit(text)
     setInputText('')
   }
-
-  const handleToggle = (short) => setShort(short)
 
   return (
     <section className='search-form'>
@@ -37,7 +35,7 @@ const SearchForm = ({ formSubmit }) => {
         {textError ? <span className='serch-form-error'>{textError}</span> : <></>}
       </form>
 
-      <FilterCheckbox handleToggle={handleToggle} />
+      <FilterCheckbox handleToggle={switchToShort} />
     </section>
   )
 }

@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import SearchForm from '../SearchForm/SearchForm'
+import { filter } from '../../utils/filter'
 import './SavedMovies.css'
 
-const SavedMovies = ({ savedMovies, onCardLike, searchMovie, fromBeatfilmApi }) => {
-  const searchFormText = (text, isShort) => {
-    searchMovie(text, isShort)
+const SavedMovies = ({ savedMovies, onCardLike, fromBeatfilmApi }) => {
+  const [mov, setMov] = useState([])
+
+  useMemo(() => {
+    setMov(savedMovies)
+  }, [savedMovies])
+
+  const switchToShort = (short) =>
+    setMov(() => (short ? savedMovies.filter((mov) => mov.duration <= 40) : savedMovies))
+
+  // Поиск по сохраненным фильмам
+  const searchMovieSaved = (text) => {
+    setMov((m) => filter(m, text))
   }
   return (
     <section className='saved-movies'>
-      <SearchForm formSubmit={searchFormText} />
-      <MoviesCardList movies={savedMovies} fromBeatfilmApi={fromBeatfilmApi} onCardLike={onCardLike} />
+      <SearchForm formSubmit={searchMovieSaved} switchToShort={switchToShort} />
+      <MoviesCardList movies={mov} fromBeatfilmApi={fromBeatfilmApi} onCardLike={onCardLike} />
     </section>
   )
 }

@@ -29,6 +29,7 @@ const App = () => {
 
   const onCardLike = (props) => {
     const JWT = localStorage.getItem('jwt')
+
     const movieLiked = sMovies.some((movie) => movie.movieId === props.movieId)
     /* const { _id } = sMovies.find((movie) => movie.movieId === props.movieId && movie._id) */
     let _id = null
@@ -78,17 +79,17 @@ const App = () => {
         .catch((err) => {
           console.log(`Ошибка при получении данных сохраненных фильмов: ${err}`)
         })
-  }, [location.pathname, authorizeUser])
+  }, [currentUser])
 
   useEffect(() => {
     setErr('')
   }, [location.pathname])
 
   //
-  const searchMovie = (text, isShort) => {
+  const searchMovie = (text) => {
     fetchData()
       .then((m) => {
-        return filter(m, text, isShort)
+        return filter(m, text)
       })
       .then((m) => {
         localStorage.setItem('MOV', JSON.stringify(m))
@@ -98,16 +99,27 @@ const App = () => {
         console.log(`Ошибка при получении данных фильмов во время сабмита формы по запросу: ${err}`)
       })
   }
-  // Поиск по сохраненным фильмам
-  const searchMovieSaved = (text, isShort) => {
-    setSavedMovies((m) => filter(m, text, isShort))
-  }
 
+  /* 
+  const switchToShort = (short) => {
+    if (location.pathname == '/movies') {
+      // eslint-disable-next-line no-unused-expressions
+      setMovies((st) => (short ? st.filter((mov) => mov.duration <= 40) : st))
+      short
+        ? setMovies((mov) => mov.filter((mov) => mov.duration <= 40))
+        : setMovies(JSON.parse(localStorage.getItem('MOV'))) 
+    } else if (location.pathname == '/saved-movies') {
+      // eslint-disable-next-line no-unused-expressions
+      short ? setSavedMovies((mov) => mov.filter((mov) => mov.duration <= 40)) : setSavedMovies()
+    } else return
+  }
+*/
   const handleRegister = ({ name, email, password }) => {
     mApi
       .register({ name, email, password })
       .then((data) => {
         const JWT = data._id //вытащить _id
+        setCurrentUser({ name, email })
         // eslint-disable-next-line no-unused-expressions
         JWT && localStorage.setItem('jwt', JWT)
         mApi
@@ -137,8 +149,11 @@ const App = () => {
         const JWT = res.token
         // eslint-disable-next-line no-unused-expressions
         JWT && localStorage.setItem('jwt', JWT)
-        setUserAuthorize(true)
-        history.push('/movies')
+        mApi.checkToken(JWT).then((values) => {
+          setUserAuthorize(true)
+          setCurrentUser(values)
+          history.push('/movies')
+        })
       })
       .catch((err) => {
         setUserAuthorize(false)
@@ -223,7 +238,6 @@ const App = () => {
               authorizeUser={authorizeUser}
               component={SavedMovies}
               savedMovies={sMovies}
-              searchMovie={searchMovieSaved}
               fromBeatfilmApi={false}
               onCardLike={onCardLike}
             />

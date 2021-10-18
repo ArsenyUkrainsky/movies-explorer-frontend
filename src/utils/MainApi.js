@@ -1,7 +1,4 @@
-export const BASE_URL = `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:4000'}`
-/* export const BASE_URL = `${window.location.protocol}//localhost:3000` */
-/* console.log(window.location.protocol)
-console.log(process.env.REACT_APP_API_URL) */
+export const BASE_URL = `https://${process.env.REACT_APP_API_URL}`
 
 const handleResponse = (response) =>
   response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`)
