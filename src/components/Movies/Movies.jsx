@@ -3,7 +3,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import SearchForm from '../SearchForm/SearchForm'
 import './Movies.css'
 
-const Movies = ({ movies, onCardLike, searchMovie, fromBeatfilmApi, savedMovies /* switchToShort */ }) => {
+const Movies = ({ movies, onCardLike, searchMovie, fromBeatfilmApi, savedMovies, err }) => {
   const searchFormText = (text) => {
     searchMovie(text)
   }
@@ -23,6 +23,7 @@ const Movies = ({ movies, onCardLike, searchMovie, fromBeatfilmApi, savedMovies 
         onCardLike={onCardLike}
         fromBeatfilmApi={fromBeatfilmApi}
         savedMovies={savedMovies}
+        err={err}
       />
     </section>
   )

@@ -96,6 +96,9 @@ const App = () => {
         setMovies(m)
       })
       .catch((err) => {
+        setErr(
+          'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+        )
         console.log(`Ошибка при получении данных фильмов во время сабмита формы по запросу: ${err}`)
       })
   }
@@ -165,6 +168,7 @@ const App = () => {
     e.preventDefault()
     localStorage.removeItem('jwt')
     localStorage.removeItem('MOV')
+    setMovies([])
     setUserAuthorize(false)
     history.push('/')
   }
@@ -230,6 +234,7 @@ const App = () => {
               searchMovie={searchMovie}
               fromBeatfilmApi={true}
               onCardLike={onCardLike}
+              err={err}
             />
 
             <ProtectedRoute

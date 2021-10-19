@@ -4,7 +4,7 @@ import Preloader from '../Preloader/Preloader'
 import MoviesCard from '../MoviesCard/MoviesCard'
 import './MoviesCardList.css'
 
-const MoviesCardList = ({ movies, onCardLike, fromBeatfilmApi, savedMovies }) => {
+const MoviesCardList = ({ movies, onCardLike, fromBeatfilmApi, savedMovies, err }) => {
   const [loadMovies, setLoadMovies] = useState([])
   const [buttonState, setButtonState] = useState(false)
   const [loading, showLoading] = useState(true)
@@ -134,6 +134,7 @@ const MoviesCardList = ({ movies, onCardLike, fromBeatfilmApi, savedMovies }) =>
       ) : (
         <span className='movies-card-list__err'>Ничего не найдено</span>
       )}
+      {err ? <span className='movies-card-list__err'>{err}</span> : <></>}
       {fromBeatfilmApi && buttonState && (
         <button className='movies-card-list__button' onClick={handleClick}>
           Ещё
