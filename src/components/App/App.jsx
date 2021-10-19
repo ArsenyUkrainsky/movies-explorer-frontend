@@ -169,6 +169,7 @@ const App = () => {
     localStorage.removeItem('jwt')
     localStorage.removeItem('MOV')
     setMovies([])
+    setSavedMovies([])
     setUserAuthorize(false)
     history.push('/')
   }
@@ -214,9 +215,11 @@ const App = () => {
           <Header authorizeUser={authorizeUser} />
           <Switch>
             <Route exact path='/signup'>
+              {authorizeUser ? <Redirect to='/' /> : <Redirect to={location.pathname} />}
               <Register onRegister={handleRegister} err={err} />
             </Route>
             <Route exact path='/signin'>
+              {authorizeUser ? <Redirect to='/' /> : <Redirect to={location.pathname} />}
               <Login onLogin={handleLogin} err={err} />
             </Route>
 

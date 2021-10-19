@@ -31,6 +31,11 @@ export function useFormWithValidation(initialValues) {
     setErrors({ ...errors, [name]: target.validationMessage })
     setIsValid(target.closest('form').checkValidity())
   }
+  // Данные имени или почты обязательно должны быть изменены для сохранения
+  if (initialValues)
+    useEffect(() => {
+      if (initialValues.name == values.name && initialValues.email == values.email) setIsValid(false)
+    }, [handleChange])
 
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {

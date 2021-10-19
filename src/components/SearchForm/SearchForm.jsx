@@ -7,19 +7,15 @@ const SearchForm = ({ formSubmit, switchToShort }) => {
   const [textError, setError] = useState('')
 
   useEffect(() => {
-    setError('Введите ключевое слово для поиска')
+    setError('')
   }, [])
-  const handleChange = (e) => {
-    setInputText(e.target.value)
-    if (!e.target.value) {
-      setError('Нужно ввести ключевое слово')
-    } else setError('')
-  }
+
+  const handleChange = (e) => setInputText(e.target.value)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    formSubmit(text)
-    setInputText('')
+    // eslint-disable-next-line no-unused-expressions
+    text.length > 0 ? (setError(''), formSubmit(text)) : setError('Нужно ввести ключевое слово')
   }
 
   return (
@@ -31,7 +27,7 @@ const SearchForm = ({ formSubmit, switchToShort }) => {
           placeholder='Фильм'
           value={text}
           onChange={handleChange}></input>
-        <button className='search-form__submit' type='submit' disabled={!text}></button>
+        <button className='search-form__submit' type='submit' /* disabled={!text} */></button>
         {textError ? <span className='serch-form-error'>{textError}</span> : <></>}
       </form>
 

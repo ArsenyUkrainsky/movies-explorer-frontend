@@ -16,7 +16,7 @@ const SavedMovies = ({ savedMovies, onCardLike, fromBeatfilmApi }) => {
 
   // Поиск по сохраненным фильмам
   const searchMovieSaved = (text) => {
-    setMov((m) => filter(m, text))
+    setMov(() => filter(savedMovies, text))
   }
   return (
     <section className='saved-movies'>
